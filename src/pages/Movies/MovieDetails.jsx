@@ -1,7 +1,6 @@
 import { fetchMovieDetails } from 'components/API/API';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Header } from 'pages/Header/Header';
 import { Container } from 'utils/Container';
 import { MovieCardWrap, MovieCardInfoWrap } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
@@ -39,7 +38,6 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Header />
       <Container>
         {
           <MovieCardWrap>

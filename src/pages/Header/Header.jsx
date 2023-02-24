@@ -16,7 +16,7 @@ export const Header = () => {
           </a>
           <HeaderNav>
             <HeaderLink href="/">Home</HeaderLink>
-            <HeaderLink href="/package-lock.json">Movies</HeaderLink>
+            <HeaderLink href="">Movies</HeaderLink>
           </HeaderNav>
         </HeaderWrap>
       </Container>

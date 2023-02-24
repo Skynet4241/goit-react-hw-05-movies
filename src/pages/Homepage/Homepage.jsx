@@ -1,21 +1,40 @@
 import { fetchPopularMovie } from 'components/API/API';
 import { Container } from 'utils/Container';
 import { useEffect, useState } from 'react';
-import { Header } from '../Header/Header';
 import { HomepageList, HomepageItem, HomepageLink } from './Homepage.styled';
+import { Loader } from 'components/Loader/Loader';
 
 export const Homepage = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
-    fetchPopularMovie().then(({ data }) => {
-      setMovies(data.results);
-    });
+    setIsLoading(true);
+    setStatus('loading');
+
+    fetchPopularMovie()
+      .then(({ data }) => {
+        setMovies(data.results);
+      })
+      .catch(error => {
+        setStatus('error');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
+
+  if (status === 'idle' || isLoading) {
+    return isLoading && <Loader isLoading={isLoading} />;
+  }
+
+  if (status === 'error') {
+    return <>There was an error</>;
+  }
 
   return (
     <>
-      <Header />
       <Container>
         <HomepageList>
           {movies.map(film => (
