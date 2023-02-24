@@ -10,27 +10,38 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
     setIsLoading(true);
+    setStatus('loading');
+
     fetchMovieDetails(movieId)
       .then(({ data }) => {
         setMovie(data);
+        setStatus('fulfilled');
+      })
+      .catch(error => {
+        setStatus('error');
       })
       .finally(() => {
         setIsLoading(false);
       });
   }, [movieId]);
 
-  if (!movie && isLoading) {
-    return <>Loading...</>;
+  if (status === 'idle' || isLoading) {
+    return isLoading && <Loader isLoading={isLoading} />;
+  }
+
+  if (status === 'error') {
+    return <>There was an error</>;
   }
 
   return (
     <>
       <Header />
       <Container>
-        {(isLoading && <Loader isLoading={isLoading} />) || (
+        {
           <MovieCardWrap>
             <img
               src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
@@ -41,7 +52,7 @@ const MovieDetails = () => {
             <MovieCardInfoWrap>
               <h2>{movie.title}</h2>
               <p>
-                User Score:
+                User Score:{' '}
                 {movie.vote_average
                   ? Math.fround(movie.vote_average * 10).toFixed(0)
                   : ''}
@@ -57,7 +68,7 @@ const MovieDetails = () => {
               </p>
             </MovieCardInfoWrap>
           </MovieCardWrap>
-        )}
+        }
       </Container>
     </>
   );
