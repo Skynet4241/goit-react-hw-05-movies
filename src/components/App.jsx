@@ -1,16 +1,16 @@
+import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { Homepage } from '../pages/Homepage';
+import { ErrorPage } from '../pages/Error';
+import { PAGE_NAMES } from './router/paths';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      <Routes>
+        <Route path={PAGE_NAMES.homepage} element={<Homepage />}></Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </>
   );
 };
