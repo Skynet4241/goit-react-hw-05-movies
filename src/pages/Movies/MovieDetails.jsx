@@ -4,41 +4,60 @@ import { useParams } from 'react-router-dom';
 import { Header } from 'pages/Header/Header';
 import { Container } from 'utils/Container';
 import { MovieCardWrap, MovieCardInfoWrap } from './MovieDetails.styled';
+import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchMovieDetails(movieId).then(({ data }) => {
-      setMovie(data);
-    });
+    setIsLoading(true);
+    fetchMovieDetails(movieId)
+      .then(({ data }) => {
+        setMovie(data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [movieId]);
+
+  if (!movie && isLoading) {
+    return <>Loading...</>;
+  }
 
   return (
     <>
       <Header />
       <Container>
-        <MovieCardWrap>
-          <img
-            src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
-            alt={movie.original_title}
-            width="300"
-            height="450"
-          />
-          <MovieCardInfoWrap>
-            <h2>{movie.original_title}</h2>
-            <p>User Score: {movie.vote_average}</p>
-            <h3>Overview</h3>
-            <p> {movie.overview}</p>
-            <h4>Genres</h4>
-            <p>
-              {movie.genres
-                ? movie.genres.map(item => item.name).join(' ')
-                : ''}
-            </p>
-          </MovieCardInfoWrap>
-        </MovieCardWrap>
+        {(isLoading && <Loader isLoading={isLoading} />) || (
+          <MovieCardWrap>
+            <img
+              src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
+              alt={movie.original_title}
+              width="300"
+              height="450"
+            />
+            <MovieCardInfoWrap>
+              <h2>{movie.title}</h2>
+              <p>
+                User Score:
+                {movie.vote_average
+                  ? Math.fround(movie.vote_average * 10).toFixed(0)
+                  : ''}
+                %
+              </p>
+              <h3>Overview</h3>
+              <p> {movie.overview}</p>
+              <h4>Genres</h4>
+              <p>
+                {movie.genres
+                  ? movie.genres.map(item => item.name).join(' ')
+                  : ''}
+              </p>
+            </MovieCardInfoWrap>
+          </MovieCardWrap>
+        )}
       </Container>
     </>
   );

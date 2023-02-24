@@ -4,7 +4,7 @@ const API_KEY = '2ea2288c6c0027064d0ebdd6a8cc6596';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 export const fetchPopularMovie = () =>
-  axios.get(`${BASE_URL}/trending/all/day?api_key=${API_KEY}`);
+  axios.get(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`);
 
 export const fetchSearchMovie = () =>
   axios.get(
