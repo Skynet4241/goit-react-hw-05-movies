@@ -1,3 +1,4 @@
+import { PAGE_NAMES } from 'components/router/paths';
 import { Container } from 'utils/Container';
 import { HeaderNav, HeaderWrap, HeaderLink } from './Header.styled';
 
@@ -15,8 +16,28 @@ export const Header = () => {
             />
           </a>
           <HeaderNav>
-            <HeaderLink href="/">Home</HeaderLink>
-            <HeaderLink href="">Movies</HeaderLink>
+            <HeaderLink
+              to={PAGE_NAMES.homepage}
+              style={({ active }) => {
+                if (active)
+                  return {
+                    color: 'purple',
+                  };
+              }}
+            >
+              Home
+            </HeaderLink>
+            <HeaderLink
+              to={PAGE_NAMES.movies}
+              style={({ active }) => {
+                if (active)
+                  return {
+                    color: 'purple',
+                  };
+              }}
+            >
+              Movies
+            </HeaderLink>
           </HeaderNav>
         </HeaderWrap>
       </Container>

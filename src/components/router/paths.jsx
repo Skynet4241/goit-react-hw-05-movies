@@ -1,4 +1,5 @@
 export const PAGE_NAMES = {
   homepage: '/',
-  movies: '/movies/:movieId',
+  movies: '/movies',
+  movies_ID: '/movies/:movieId',
 };

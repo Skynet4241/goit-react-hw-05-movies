@@ -16,6 +16,11 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+
+}
+
 h2,
 p {
   margin: 0;
