@@ -1,15 +1,17 @@
 import { fetchMovieDetails } from 'components/API/API';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { Container } from 'utils/Container';
 import { MovieCardWrap, MovieCardInfoWrap } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
+import { GoBackBtn } from 'components/GoBackBtn/GoBackBtn';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState('idle');
+  const location = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -39,6 +41,7 @@ const MovieDetails = () => {
   return (
     <>
       <Container>
+        <GoBackBtn path={location?.state?.from ?? '/'} />
         {
           <MovieCardWrap>
             <img

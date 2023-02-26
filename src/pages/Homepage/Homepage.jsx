@@ -1,7 +1,12 @@
 import { fetchPopularMovie } from 'components/API/API';
 import { Container } from 'utils/Container';
 import { useEffect, useState } from 'react';
-import { HomepageList, HomepageItem, HomepageLink } from './Homepage.styled';
+import {
+  HomepageList,
+  HomepageItem,
+  HomepageLink,
+  HomepageTitle,
+} from './Homepage.styled';
 import { Loader } from 'components/Loader/Loader';
 
 export const Homepage = () => {
@@ -36,6 +41,7 @@ export const Homepage = () => {
   return (
     <>
       <Container>
+        <HomepageTitle>Top-movies of this week</HomepageTitle>
         <HomepageList>
           {movies.map(film => (
             <HomepageItem key={film.id}>

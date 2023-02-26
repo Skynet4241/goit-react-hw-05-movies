@@ -12,6 +12,11 @@ export const HomepageItem = styled.li`
   display: flex;
 `;
 
+export const HomepageTitle = styled.h1`
+  display: flex;
+  justify-content: center;
+`;
+
 export const HomepageLink = styled(NavLink)`
   display: flex;
   flex-direction: column;

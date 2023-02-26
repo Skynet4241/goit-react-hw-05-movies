@@ -1,13 +1,13 @@
 import { fetchSearchMovie } from 'components/API/API';
 import { Loader } from 'components/Loader/Loader';
-import { SearchForm } from 'components/SearchForm';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 import {
   HomepageItem,
   HomepageLink,
   HomepageList,
 } from 'pages/Homepage/Homepage.styled';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { Container } from 'utils/Container';
 
 export const Movie = () => {
@@ -20,6 +20,10 @@ export const Movie = () => {
   const handleFormSubmit = inputValue => {
     setSearchParams({ query: inputValue });
   };
+
+  const location = useLocation();
+  const currentPage =
+    location.pathname === '/' ? '/cocktails' : location.pathname;
 
   useEffect(() => {
     setIsLoading(true);
@@ -54,7 +58,10 @@ export const Movie = () => {
         <HomepageList>
           {movies.map(film => (
             <HomepageItem key={film.id}>
-              <HomepageLink to={`${film.id}`}>
+              <HomepageLink
+                to={`${currentPage}/${film.id}`}
+                state={{ from: location }}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${film.poster_path}`}
                   alt={film.title || film.name}
