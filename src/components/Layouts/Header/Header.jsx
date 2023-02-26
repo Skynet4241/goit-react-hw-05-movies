@@ -16,28 +16,8 @@ export const Header = () => {
             />
           </a>
           <HeaderNav>
-            <HeaderLink
-              to={PAGE_NAMES.homepage}
-              style={({ active }) => {
-                if (active)
-                  return {
-                    color: 'purple',
-                  };
-              }}
-            >
-              Home
-            </HeaderLink>
-            <HeaderLink
-              to={PAGE_NAMES.movies}
-              style={({ active }) => {
-                if (active)
-                  return {
-                    color: 'purple',
-                  };
-              }}
-            >
-              Movies
-            </HeaderLink>
+            <HeaderLink to={PAGE_NAMES.homepage}>Home</HeaderLink>
+            <HeaderLink to={PAGE_NAMES.movies}>Movies</HeaderLink>
           </HeaderNav>
         </HeaderWrap>
       </Container>

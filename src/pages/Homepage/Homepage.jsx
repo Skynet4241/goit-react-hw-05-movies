@@ -9,7 +9,7 @@ import {
 } from './Homepage.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const Homepage = () => {
+const Homepage = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState('idle');
@@ -61,3 +61,5 @@ export const Homepage = () => {
     </>
   );
 };
+
+export default Homepage;
