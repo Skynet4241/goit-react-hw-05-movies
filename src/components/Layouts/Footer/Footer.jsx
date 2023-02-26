@@ -1,9 +1,12 @@
 import { Container } from 'utils/Container';
+import { FooterBackground, FooterText } from './Footer.styled';
 
 export const Footer = () => {
   return (
-    <footer>
-      <Container> This is footer</Container>
-    </footer>
+    <FooterBackground>
+      <Container>
+        <FooterText> © 2023 | All Rights Reserved</FooterText>
+      </Container>
+    </FooterBackground>
   );
 };

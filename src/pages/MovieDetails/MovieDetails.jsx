@@ -6,6 +6,7 @@ import { MovieCardWrap, MovieCardInfoWrap } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
 import { GoBackBtn } from 'components/GoBackBtn/GoBackBtn';
 import { PAGE_NAMES } from 'components/router/paths';
+import { MovieImage } from 'pages/Homepage/Homepage.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -44,7 +45,7 @@ const MovieDetails = () => {
       <Container>
         <GoBackBtn path={location?.state?.from ?? '/'} />
         <MovieCardWrap>
-          <img
+          <MovieImage
             src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
             alt={movie.original_title}
             width="300"

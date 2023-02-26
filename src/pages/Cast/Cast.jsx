@@ -8,7 +8,11 @@ const Cast = () => {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    fetchMovieCredits(movieId).then(res => setCast(res.data.cast));
+    fetchMovieCredits(movieId)
+      .then(res => setCast(res.data.cast))
+      .catch(error => {
+        console.log('error');
+      });
   }, [movieId]);
 
   return (

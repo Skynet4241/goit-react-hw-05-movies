@@ -2,10 +2,12 @@ import { fetchPopularMovie } from 'components/API/API';
 import { Container } from 'utils/Container';
 import { useEffect, useState } from 'react';
 import {
-  HomepageList,
-  HomepageItem,
-  HomepageLink,
-  HomepageTitle,
+  MovieList,
+  MovieItem,
+  MovieLink,
+  MovieTitle,
+  MovieText,
+  MovieImage,
 } from './Homepage.styled';
 import { Loader } from 'components/Loader/Loader';
 
@@ -41,22 +43,24 @@ const Homepage = () => {
   return (
     <>
       <Container>
-        <HomepageTitle>Top-movies of this week</HomepageTitle>
-        <HomepageList>
+        <MovieTitle>Top-movies of this week</MovieTitle>
+        <MovieList>
           {movies.map(film => (
-            <HomepageItem key={film.id}>
-              <HomepageLink to={`movies/${film.id}`}>
-                <img
+            <MovieItem key={film.id}>
+              <MovieLink to={`movies/${film.id}`}>
+                <MovieImage
                   src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${film.poster_path}`}
                   alt={film.title || film.name}
                   width="180"
                   height="250"
                 />
-                {film.title || film.name}
-              </HomepageLink>
-            </HomepageItem>
+                <MovieText>
+                  <strong>{film.title || film.name}</strong>
+                </MovieText>
+              </MovieLink>
+            </MovieItem>
           ))}
-        </HomepageList>
+        </MovieList>
       </Container>
     </>
   );

@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Container } from 'utils/Container';
-import { FormSearch, SearchFormWrap } from './SearchForm.styled';
+import {
+  FormSearch,
+  SearchFormWrap,
+  FormInput,
+  FormButton,
+} from './SearchForm.styled';
 
 export const SearchForm = ({ onSubmit }) => {
   const [inputValue, setInputValue] = useState('');
@@ -17,7 +22,7 @@ export const SearchForm = ({ onSubmit }) => {
         <SearchFormWrap>
           <FormSearch onSubmit={formSubmit}>
             <div>
-              <input
+              <FormInput
                 type="text"
                 placeholder="Enter name of movie..."
                 value={inputValue}
@@ -25,7 +30,14 @@ export const SearchForm = ({ onSubmit }) => {
               />
             </div>
 
-            <button type="submit">Search</button>
+            <FormButton type="submit">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEipZg-O6T2kLEu2GPEsOlGf4_--3Q74UjTg&usqp=CAU"
+                alt="search"
+                width="30"
+                height="30"
+              ></img>
+            </FormButton>
           </FormSearch>
         </SearchFormWrap>
       </Container>
