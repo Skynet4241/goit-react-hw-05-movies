@@ -13,7 +13,10 @@ export const Header = () => {
     <HeaderBackground>
       <Container>
         <HeaderWrap>
-          <HeaderTitle>Kinohub</HeaderTitle>
+          <a href="/">
+            <HeaderTitle>Moviehub</HeaderTitle>
+          </a>
+
           <HeaderNav>
             <HeaderLink to={PAGE_NAMES.homepage}>Home</HeaderLink>
             <HeaderLink to={PAGE_NAMES.movies}>Movies</HeaderLink>
