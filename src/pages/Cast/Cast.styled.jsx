@@ -22,4 +22,5 @@ export const CastListText = styled.p`
   margin: 5px 0;
   display: flex;
   text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 `;

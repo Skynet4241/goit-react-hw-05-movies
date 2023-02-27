@@ -6,6 +6,10 @@ import {
   MovieCardWrap,
   MovieCardInfoWrap,
   MovieDetailsList,
+  MovieTitle,
+  MovieText,
+  MovieTextInfo,
+  MovieTitleOverview,
 } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
 import { GoBackBtn } from 'components/GoBackBtn/GoBackBtn';
@@ -56,38 +60,38 @@ const MovieDetails = () => {
             height="450"
           />
           <MovieCardInfoWrap>
-            <h2>{movie.title}</h2>
-            <p>
+            <MovieTitle>{movie.title}</MovieTitle>
+            <MovieText>
               User Score:{' '}
               {movie.vote_average
                 ? Math.fround(movie.vote_average * 10).toFixed(0)
                 : ''}
               %
-            </p>
-            <h3>Overview</h3>
-            <p> {movie.overview}</p>
-            <h4>Genres</h4>
-            <p>
+            </MovieText>
+            <MovieTitleOverview>Overview</MovieTitleOverview>
+            <MovieText> {movie.overview}</MovieText>
+            <MovieTitleOverview>Genres</MovieTitleOverview>
+            <MovieText>
               {movie.genres
                 ? movie.genres.map(item => item.name).join(' ')
                 : ''}
-            </p>
+            </MovieText>
+            <MovieTextInfo>Additional information</MovieTextInfo>
+            <MovieDetailsList>
+              <li>
+                <Link to={PAGE_NAMES.cast} state={location.state}>
+                  Cast
+                </Link>
+              </li>
+              <li>
+                <Link to={PAGE_NAMES.reviews} state={location.state}>
+                  Reviews
+                </Link>
+              </li>
+            </MovieDetailsList>
           </MovieCardInfoWrap>
         </MovieCardWrap>
 
-        <p>Additional information</p>
-        <MovieDetailsList>
-          <li>
-            <Link to={PAGE_NAMES.cast} state={location.state}>
-              Cast
-            </Link>
-          </li>
-          <li>
-            <Link to={PAGE_NAMES.reviews} state={location.state}>
-              Reviews
-            </Link>
-          </li>
-        </MovieDetailsList>
         <Outlet />
       </Container>
     </>
