@@ -8,6 +8,7 @@ import {
   CastListItem,
   CastListText,
 } from './Cast.styled';
+import PropTypes from 'prop-types';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -48,6 +49,10 @@ const Cast = () => {
       </div>
     </>
   );
+};
+
+Cast.propTypes = {
+  movieId: PropTypes.string,
 };
 
 export default Cast;
