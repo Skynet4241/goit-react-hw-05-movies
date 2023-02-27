@@ -14,8 +14,7 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState('idle');
   const location = useLocation();
-  console.log(location);
-  console.log(location?.state?.from);
+
   useEffect(() => {
     setIsLoading(true);
     setStatus('loading');
