@@ -8,7 +8,9 @@ export const MainLayout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
       <Footer />
     </>
   );
