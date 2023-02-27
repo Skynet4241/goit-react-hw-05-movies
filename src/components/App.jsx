@@ -14,8 +14,8 @@ const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
 export const App = () => {
   return (
     <Routes>
-      <Route path={PAGE_NAMES.homepage} element={<MainLayout />}>
-        <Route index element={<Homepage />} />
+      <Route index element={<MainLayout />}>
+        <Route path={PAGE_NAMES.homepage} element={<Homepage />} />
         <Route path={PAGE_NAMES.movies} element={<Movie />} />
         <Route path={PAGE_NAMES.movies_ID} element={<MovieDetails />}>
           <Route path={PAGE_NAMES.cast} element={<Cast />} />
