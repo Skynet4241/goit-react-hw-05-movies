@@ -8,3 +8,8 @@ export const MovieCardInfoWrap = styled.div`
   flex-direction: column;
   margin-left: 10px;
 `;
+
+export const MovieDetailsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;

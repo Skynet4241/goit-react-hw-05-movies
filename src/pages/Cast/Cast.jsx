@@ -2,6 +2,12 @@ import { fetchMovieCredits } from 'components/API/API';
 import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {
+  CastList,
+  CastListImg,
+  CastListItem,
+  CastListText,
+} from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -24,21 +30,21 @@ const Cast = () => {
     <>
       {isLoading && <Loader />}
       <div>
-        <ul>
+        <CastList>
           {cast.map(cast => {
             return (
-              <li key={cast.id}>
-                <img
+              <CastListItem key={cast.id}>
+                <CastListImg
                   width={100}
                   src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${cast.profile_path}`}
                   alt={cast.name}
                 />
-                <p>{cast.name}</p>
-                <p>Character: {cast.character}</p>
-              </li>
+                <CastListText>{cast.name}</CastListText>
+                <CastListText>Character: {cast.character}</CastListText>
+              </CastListItem>
             );
           })}
-        </ul>
+        </CastList>
       </div>
     </>
   );

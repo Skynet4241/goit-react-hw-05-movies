@@ -2,7 +2,11 @@ import { fetchMovieDetails } from 'components/API/API';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { Container } from 'utils/Container';
-import { MovieCardWrap, MovieCardInfoWrap } from './MovieDetails.styled';
+import {
+  MovieCardWrap,
+  MovieCardInfoWrap,
+  MovieDetailsList,
+} from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
 import { GoBackBtn } from 'components/GoBackBtn/GoBackBtn';
 import { PAGE_NAMES } from 'components/router/paths';
@@ -72,7 +76,7 @@ const MovieDetails = () => {
         </MovieCardWrap>
 
         <p>Additional information</p>
-        <ul>
+        <MovieDetailsList>
           <li>
             <Link to={PAGE_NAMES.cast} state={location.state}>
               Cast
@@ -83,7 +87,7 @@ const MovieDetails = () => {
               Reviews
             </Link>
           </li>
-        </ul>
+        </MovieDetailsList>
         <Outlet />
       </Container>
     </>
