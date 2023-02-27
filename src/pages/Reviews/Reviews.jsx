@@ -2,6 +2,7 @@ import { fetchMovieReviews } from 'components/API/API';
 import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ReviewsText } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -28,7 +29,9 @@ const Reviews = () => {
           {reviews.map(review => {
             return (
               <li key={review.id}>
-                <p>Author: {review.author}</p>
+                <ReviewsText>
+                  <strong>Author: {review.author}</strong>
+                </ReviewsText>
                 <p>{review.content}</p>
               </li>
             );
