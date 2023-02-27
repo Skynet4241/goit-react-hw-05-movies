@@ -1,6 +1,6 @@
 import { fetchMovieDetails } from 'components/API/API';
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { Container } from 'utils/Container';
 import { MovieCardWrap, MovieCardInfoWrap } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
@@ -14,7 +14,8 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState('idle');
   const location = useLocation();
-
+  console.log(location);
+  console.log(location?.state?.from);
   useEffect(() => {
     setIsLoading(true);
     setStatus('loading');
@@ -74,12 +75,17 @@ const MovieDetails = () => {
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to={PAGE_NAMES.cast}>Cast</Link>
+            <Link to={PAGE_NAMES.cast} state={location.state}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to={PAGE_NAMES.reviews}>Reviews</Link>
+            <Link to={PAGE_NAMES.reviews} state={location.state}>
+              Reviews
+            </Link>
           </li>
         </ul>
+        <Outlet />
       </Container>
     </>
   );

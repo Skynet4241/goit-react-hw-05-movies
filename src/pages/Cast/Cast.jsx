@@ -1,22 +1,28 @@
 import { fetchMovieCredits } from 'components/API/API';
+import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Cast = () => {
   const { movieId } = useParams();
-
   const [cast, setCast] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchMovieCredits(movieId)
       .then(res => setCast(res.data.cast))
       .catch(error => {
         console.log('error');
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [movieId]);
 
   return (
     <>
+      {isLoading && <Loader />}
       <div>
         <ul>
           {cast.map(cast => {

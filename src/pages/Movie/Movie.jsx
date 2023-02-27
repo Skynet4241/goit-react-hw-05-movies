@@ -24,8 +24,9 @@ export const Movie = () => {
   };
 
   const location = useLocation();
+
   const currentPage =
-    location.pathname === '/' ? '/cocktails' : location.pathname;
+    location.pathname === '/' ? '/movies/:movieId' : location.pathname;
 
   useEffect(() => {
     setIsLoading(true);
